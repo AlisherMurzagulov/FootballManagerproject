@@ -19,6 +19,25 @@
         </div>
     </header>
     <main>
+        <div class="field1 d-none">
+            <div class="row ">
+                <div class="col">
+                    <h2 class="playoff1">Barca</h2>
+                </div>
+                <div class="col">
+                    <h2 class="playoff2">Barca</h2>
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col">
+                    <h2 class="playoff3">Barca</h2>
+                </div>
+                <div class="col">
+                    <h2 class="playoff4">Barca</h2>
+                </div>
+            </div>
+        </div>
         <div class="field">
             <div class="card-deck">
                 <div class="card AtleticoMadrid" onclick="groupgeneration('AtleticoMadrid')">
@@ -220,7 +239,12 @@
         </div>
     </main>
     <footer class="footer">
-    </footer>
-    <script src="/vendor.min.js"></script>
+            <div class="buttons">
+                <button type="button" class="btn btn-primary btn-lg" onclick="groupstart()">Начать Груповой этап</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="playoff()">Начать Плэйофф</button>
+            </div>
+            <button type="button" class="final btn btn-primary btn-lg d-none" onclick="final()">Продолжить</button>
+        </footer>
+        <script src="/vendor.min.js"></script>
 </body>
 </html>
