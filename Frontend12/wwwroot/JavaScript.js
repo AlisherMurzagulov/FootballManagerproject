@@ -2,6 +2,8 @@
 var points = [];
 var gd = [];
 var comands = [];
+var p = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var g = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 function groupgeneration(selected)
 {
     selectedcomand = selected;
@@ -25,3 +27,47 @@ function groupgeneration(selected)
         }
     }
 }
+function compareScore(comA, comB) {
+    return comA.score - comB.score;
+}
+var arr1 = [1, 0, 3];
+function point() {
+    var main = 0;
+    var main1 = 0;
+    var main2 = 0;
+    var main3 = 0;
+    for (var i = 1; i <= 3; i++)
+    {
+        p[i] += Math.floor(Math.random() * arr1.length);
+        g[i] += Math.floor(Math.random() * 4) - 1;
+        main += p[i];
+    }
+    p[3] += Math.floor(Math.random() * 3) + 2;
+    g[3] += Math.floor(Math.random() * 3) + 1;
+    main += p[3];
+    for (var i = 1; i <= 2; i++) {
+        p[i + 3] += Math.floor(Math.random() * arr1.length);
+        g[i + 3] += Math.floor(Math.random() * 4) - 2;
+        main1 += p[i + 3];
+    }
+    p[6] += Math.floor(Math.random() * 3) + 2;
+    g[6] += Math.floor(Math.random() * 4) + 1;
+    main1 += p[6];
+    for (var i = 1; i <= 2; i++) {
+        p[i + 6] += Math.floor(Math.random() * arr1.length);
+        g[i + 6] += Math.floor(Math.random() * 4) - 2;
+        main2 += p[i + 6];
+    }
+    p[9] += Math.floor(Math.random() * 3) + 2;
+    g[9] += Math.floor(Math.random() * 3) + 1;
+    main2 += p[9];
+    for (var i = 1; i <= 2; i++) {
+        p[i + 9] += Math.floor(Math.random() * arr1.length);
+        g[i + 9] += Math.floor(Math.random() * 4) - 2;
+        main3 += p[i + 9];
+    }
+    p[12] += Math.floor(Math.random() * 3) + 2;
+    g[12] += Math.floor(Math.random() * 3) + 1;
+    main3 += p[12];
+}
+
