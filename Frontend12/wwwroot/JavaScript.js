@@ -119,3 +119,12 @@ function groupstart(comand) {
     point();
     point();
 }
+function PoissonExponential(rate) {
+    var k = -1;
+    var s = 0;
+    do {
+        s += Math.exp(1);
+        ++k;
+    } while (s < rate);
+    return k;
+}
