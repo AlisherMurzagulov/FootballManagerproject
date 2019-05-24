@@ -14,8 +14,6 @@ function point() {
     var main2 = 0;
     var main3 = 0;
     for (var i = 1; i <= 3; i++) {
-
-
         p[i] += Math.floor(Math.random() * arr1.length);
         g[i] += Math.floor(Math.random() * 4) - 1;
         main += p[i];
@@ -47,7 +45,11 @@ function point() {
     p[12] += Math.floor(Math.random() * 3) + 2;
     g[12] += Math.floor(Math.random() * 3) + 1;
     main3 += p[12];
- 
+    if (main1 > 12 || main > 12 || main2 > 12 || main3 > 12) {
+        point();
+    }
+
+    else {
         for (var i = 1; i <= 12; i++) {
             var team1 = { name: "Atletico Madrid", score: (p[1] * 10) + g[1], points: p[1], Gd: g[1] };
             var team2 = { name: "Borussia Dortmund", score: (p[2] * 10) + g[2], points: p[2], Gd: g[2] };
@@ -91,7 +93,7 @@ function point() {
             gd[i + 9].innerText = basket4[basket1.length - i].Gd;
         }
         return 0;
-    
+    }
 }
 function groupgeneration(selected) {
     selectedcomand = selected;
@@ -116,6 +118,7 @@ function groupgeneration(selected) {
     }
 }
 function groupstart(comand) {
+
     point();
     point();
 }
@@ -127,4 +130,85 @@ function PoissonExponential(rate) {
         ++k;
     } while (s < rate);
     return k;
+}
+var playoffcomand = [];
+var pos = [];
+var inerrHtmlg = [];
+function playoff() {
+    document.getElementsByClassName('field')[0].innerHTML = "";
+    playoffcomand[0] = document.getElementsByClassName('comand' + 1)[0].innerText;
+    playoffcomand[1] = document.getElementsByClassName('comand' + 4)[0].innerText;
+    playoffcomand[2] = document.getElementsByClassName('comand' + 7)[0].innerText;
+    playoffcomand[3] = document.getElementsByClassName('comand' + 10)[0].innerText;
+    document.getElementsByClassName('field2')[0].innerHTML = "";
+    document.getElementsByClassName('buttons')[0].innerHTML = "";
+    document.getElementsByClassName('field1')[0].classList.remove("d-none");
+    win();
+}
+function win() {
+    pos[0] = PoissonExponential(5.02);
+    pos[1] = PoissonExponential(10.07);
+    pos[2] = PoissonExponential(5.02);
+    pos[3] = PoissonExponential(10.07);
+    if (pos[0] > pos[1]) {
+        inerrHtmlg[0] = Math.floor(Math.random() * 3) + 2;
+        inerrHtmlg[1] = Math.floor(Math.random() * 1) + 0;
+        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[1];
+    }
+    if (pos[0] < pos[1] || pos[0] == pos[1]) {
+        inerrHtmlg[0] = Math.floor(Math.random() * 2) + 1;
+        inerrHtmlg[1] = Math.floor(Math.random() * 4) + 3;
+        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[1];
+    }
+    if (pos[2] > pos[3]) {
+        inerrHtmlg[2] = Math.floor(Math.random() * 4) + 3;
+        inerrHtmlg[3] = Math.floor(Math.random() * 2) + 1;
+        document.getElementsByClassName('playoff3')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[2];
+        document.getElementsByClassName('playoff4')[0].innerText = inerrHtmlg[3] + " " + playoffcomand[3];
+    }
+
+    if (pos[2] < pos[3] || pos[2] == pos[3]) {
+        inerrHtmlg[2] = Math.floor(Math.random() * 2) + 1;
+        inerrHtmlg[3] = Math.floor(Math.random() * 4) + 3;
+        document.getElementsByClassName('playoff3')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[2];
+        document.getElementsByClassName('playoff4')[0].innerText = inerrHtmlg[3] + " " + playoffcomand[3];
+    }
+    document.getElementsByClassName('final')[0].classList.remove("d-none");
+}
+var finallcomand = [];
+function final() {
+    if (inerrHtmlg[0] < inerrHtmlg[1]) {
+        playoffcomand[0] = playoffcomand[1];
+    }
+    if (inerrHtmlg[2] < inerrHtmlg[3]) {
+        playoffcomand[2] = playoffcomand[3];
+    }
+    document.getElementsByClassName('playoff3')[0].innerText = "";
+    document.getElementsByClassName('playoff4')[0].innerText = "";
+    document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0];
+    document.getElementsByClassName('playoff2')[0].innerText = playoffcomand[2];
+    setTimeout(end, 500);
+
+
+}
+function end() {
+    pos[0] = PoissonExponential(7.02);
+    pos[1] = PoissonExponential(10.07);
+    var str = "Победитель";
+    if (pos[0] > pos[1]) {
+        inerrHtmlg[0] = Math.floor(Math.random() * 4) + 3;
+        inerrHtmlg[1] = Math.floor(Math.random() * 2) + 1;
+        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        document.getElementsByClassName('playoff2')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[1];
+        setTimeout("alert(playoffcomand[0])", 10);
+    }
+    if (pos[0] < pos[1]) {
+        inerrHtmlg[0] = Math.floor(Math.random() * 2) + 1;
+        inerrHtmlg[1] = Math.floor(Math.random() * 4) + 3;
+        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[2];
+        setTimeout("alert(playoffcomand[2])", 10);
+    }
 }
