@@ -133,6 +133,15 @@ var playoffcomand = [];
 var pos = [];
 var inerrHtmlg = [];
 var con1, con2, con3, con4;
+//Функция для определения попадания выбранной комнды в плей-oфф 
+function deterselect(team1, team2, container1, container2) {
+    if (selectedcomand == team1.replace(/\s+/g, '')) {
+        container1.parentElement.classList.add("text-success");
+    }
+    if (selectedcomand == team2.replace(/\s+/g, '')) {
+        container2.parentElement.classList.add("text-success");
+    }
+}
 //Функция запуска игр плей-офф
 function playoff()
 {
