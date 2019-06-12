@@ -1,18 +1,22 @@
-﻿var selectedcomand = 0;
-var p = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var g = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var points = [];
-var gd = [];
-var comands = [];
+﻿var selectedcomand = 0;// Выбранная игроком команда 
+var p = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];// Массив для генерации очков комнады 
+var g = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];// Массив для генерации голов команды
+var points = [];// Колонка в html для записи очков 
+var gd = [];//Колонка в html для записи голов
+var comands = [];//Колонка в html для записи команд
+//Массивы объектов, команды разбиты по принципу групп,в которых они находятся.Массивы нужны для сортировки групп.
 var basket1 = [];
 var basket2 = [];
 var basket3 = [];
 var basket4 = [];
+//массив для случайнной генерации очков  
+var arr1 = [1, 0, 3];
+//Компаратор для сравнения команд,по очкам и голам
 function compareScore(comA, comB)
 {
     return comA.score - comB.score;
 }
-var arr1 = [1, 0, 3];
+//Функция сортировки команд (по очкам и голам),присвоение очков,голов,команд по колонкам в HTML
 function point()
 {
     generationPoint(1, 3);
@@ -68,6 +72,7 @@ function point()
     }
     return 0;
 }
+//Генерации групп с командами 
 function groupgeneration(selected)
 {
     selectedcomand = selected;
@@ -96,7 +101,7 @@ function groupgeneration(selected)
         }
     }
 }
-
+//Генерация очков 
 function generationPoint(start,end)
 {
     var main=0;
@@ -108,10 +113,12 @@ function generationPoint(start,end)
     }
     if (main > 6) generationPoint();
 }
+//Запуск группвого этапа
 function groupstart(comand)
 {
     point();
 }
+//Функция генерации случайного числа Пуассона 
 function PoissonExponential(rate)
 {
     var k = -1;
@@ -125,7 +132,10 @@ function PoissonExponential(rate)
 var playoffcomand = [];
 var pos = [];
 var inerrHtmlg = [];
-function playoff() {
+var con1, con2, con3, con4;
+//Функция запуска игр плей-офф
+function playoff()
+{
     document.getElementsByClassName('field')[0].innerHTML = "";
     playoffcomand[0] = document.getElementsByClassName('comand' + 1)[0].innerText;
     playoffcomand[1] = document.getElementsByClassName('comand' + 4)[0].innerText;
@@ -136,71 +146,98 @@ function playoff() {
     document.getElementsByClassName('field1')[0].classList.remove("d-none");
     win();
 }
+//1/4 этап турнира,определение учсатников 1/2
 function win() {
     pos[0] = PoissonExponential(5.02);
     pos[1] = PoissonExponential(10.07);
     pos[2] = PoissonExponential(5.02);
     pos[3] = PoissonExponential(10.07);
-    if (pos[0] > pos[1]) {
+    con1 = document.getElementsByClassName('playoff1')[0];
+    con2 = document.getElementsByClassName('playoff2')[0];
+    con3 = document.getElementsByClassName('playoff3')[0];
+    con4 = document.getElementsByClassName('playoff4')[0];
+    if (pos[0] > pos[1])
+    {
         inerrHtmlg[0] = Math.floor(Math.random() * 3) + 2;
         inerrHtmlg[1] = Math.floor(Math.random() * 1) + 0;
-        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
-        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[1];
+        con1.innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        con2.innerText = inerrHtmlg[1] + " " + playoffcomand[1];
+        deterselect(playoffcomand[0], playoffcomand[1],con1,con2);
     }
-    if (pos[0] < pos[1] || pos[0] == pos[1]) {
+    if (pos[0] < pos[1] || pos[0] == pos[1])
+    {
         inerrHtmlg[0] = Math.floor(Math.random() * 2) + 1;
         inerrHtmlg[1] = Math.floor(Math.random() * 4) + 3;
-        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
-        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[1];
+        con1.innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        con2.innerText = inerrHtmlg[1] + " " + playoffcomand[1];
     }
-    if (pos[2] > pos[3]) {
+    if (pos[2] > pos[3])
+    {
         inerrHtmlg[2] = Math.floor(Math.random() * 4) + 3;
         inerrHtmlg[3] = Math.floor(Math.random() * 2) + 1;
-        document.getElementsByClassName('playoff3')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[2];
-        document.getElementsByClassName('playoff4')[0].innerText = inerrHtmlg[3] + " " + playoffcomand[3];
+        con3.innerText = playoffcomand[2] + " " + inerrHtmlg[2];
+        con4.innerText = inerrHtmlg[3] + " " + playoffcomand[3];
     }
-
-    if (pos[2] < pos[3] || pos[2] == pos[3]) {
+    if (pos[2] < pos[3] || pos[2] == pos[3])
+    {
         inerrHtmlg[2] = Math.floor(Math.random() * 2) + 1;
         inerrHtmlg[3] = Math.floor(Math.random() * 4) + 3;
-        document.getElementsByClassName('playoff3')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[2];
-        document.getElementsByClassName('playoff4')[0].innerText = inerrHtmlg[3] + " " + playoffcomand[3];
+        con3.innerText = playoffcomand[2] + " " + inerrHtmlg[2];
+        con4.innerText = inerrHtmlg[3] + " " + playoffcomand[3];
     }
+    deterselect(playoffcomand[0], playoffcomand[1], con1, con2);
+    deterselect(playoffcomand[2], playoffcomand[3], con3, con4);
     document.getElementsByClassName('final')[0].classList.remove("d-none");
 }
+//1/2 этап турнира,определнеие участников финала турнира 
 var finallcomand = [];
-function final() {
-    if (inerrHtmlg[0] < inerrHtmlg[1]) {
+function final()
+{
+    if (inerrHtmlg[0] < inerrHtmlg[1])
+    {
         playoffcomand[0] = playoffcomand[1];
     }
-    if (inerrHtmlg[2] < inerrHtmlg[3]) {
+    if (inerrHtmlg[2] < inerrHtmlg[3])
+    {
         playoffcomand[2] = playoffcomand[3];
     }
-    document.getElementsByClassName('playoff3')[0].innerText = "";
-    document.getElementsByClassName('playoff4')[0].innerText = "";
-    document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0];
-    document.getElementsByClassName('playoff2')[0].innerText = playoffcomand[2];
+    con3.innerText = "";
+    con4.innerText = "";
+    con1.innerText = playoffcomand[0];
+    con2.innerText = playoffcomand[2];
+    con1.parentElement.classList.remove("text-success");
+    con2.parentElement.classList.remove("text-success");
+    con3.parentElement.classList.remove("text-success");
+    con4.parentElement.classList.remove("text-success");
+    deterselect(playoffcomand[0], playoffcomand[2], con1, con2);
     setTimeout(end, 500);
 
 
 }
+// Финал турнира,определение победителя 
 function end()
 {
     pos[0] = PoissonExponential(7.02);
     pos[1] = PoissonExponential(10.07);
+    con1.parentElement.classList.remove("text-success");
+    con2.parentElement.classList.remove("text-success");
     var str = "Победитель";
-    if (pos[0] > pos[1]) {
+    if (pos[0] > pos[1])
+    {
         inerrHtmlg[0] = Math.floor(Math.random() * 4) + 3;
         inerrHtmlg[1] = Math.floor(Math.random() * 2) + 1;
-        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
-        document.getElementsByClassName('playoff2')[0].innerText = playoffcomand[2] + " " + inerrHtmlg[1];
+
+        con1.innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        con2.innerText = playoffcomand[2] + " " + inerrHtmlg[1];
         setTimeout("alert(playoffcomand[0])", 10);
     }
     if (pos[0] < pos[1]) {
         inerrHtmlg[0] = Math.floor(Math.random() * 2) + 1;
         inerrHtmlg[1] = Math.floor(Math.random() * 4) + 3;
-        document.getElementsByClassName('playoff1')[0].innerText = playoffcomand[0] + " " + inerrHtmlg[0];
-        document.getElementsByClassName('playoff2')[0].innerText = inerrHtmlg[1] + " " + playoffcomand[2];
+
+        con1.innerText = playoffcomand[0] + " " + inerrHtmlg[0];
+        con2.innerText = inerrHtmlg[1] + " " + playoffcomand[2];
         setTimeout("alert(playoffcomand[2])", 10);
     }
+    deterselect(playoffcomand[0], playoffcomand[2], con1, con2);
 }
