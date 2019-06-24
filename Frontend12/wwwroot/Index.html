@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/vendor.min.css" />
     <title>Web-Frontend12</title>
     <!-- Web fonts -->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="StyleSheet.css">
-    <script src="JavaScript.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="JavaScript.js"></script>
 </head>
 <body>
     <header>
@@ -21,23 +24,57 @@
     <main>
         <div class="field1 d-none">
             <div class="row ">
-                <div class="col ">
-                    <h2 class="playoff1">Barca</h2>
-                </div>
                 <div class="col">
-                    <h2 class="playoff2">Barca</h2>
+                    <div class="row fieldcom1">
+                        <div class="col ">
+                            <h2 class="playoff1">Barca</h2>
+                        </div>
+                        <div class="col">
+                            <h2 class="playoff2">Barca</h2>
+                        </div>
+                    </div>
+                    <div class="row fields">
+                        <div class="imag">
+                            <img src="picture/field.jpg" alt="поле не загрузилось" />
+                        </div>
+                        <div class="player">
+                            <div style="left:76px;top:430px;" class="round">1</div>
+                            <div style="left:207px;top:204px;" class="round">2</div>
+                            <div style="left:207px;top:348px;" class="round">3</div>
+                            <div style="left:207px;top:515px;" class="round">4</div>
+                            <div style="left:207px;top:650px;" class="round">5</div>
+                            <div style="left:76px;top:430px;" class="round">6</div>
+                            <div style="left:207px;top:204px;" class="round">7</div>
+                            <div style="left:207px;top:348px;" class="round">8</div>
+                            <div style="left:207px;top:515px;" class="round">9</div>
+                            <div style="left:207px;top:650px;" class="round">10</div>
+                             <div style="left:76px;top:430px;" class="round">11</div>
+                            <div style="left:207px;top:204px;" class="round">12</div>
+                     
+                        </div>
+                    </div>
                 </div>
-
-                <div class="w-100"></div>
-
+            </div>
+            <div class="row fieldcom2">
                 <div class="col">
-                    <h2 class="playoff3">Barca</h2>
-                </div>
-                <div class="col">
-                    <h2 class="playoff4">Barca</h2>
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="playoff3">Barca</h2>
+                        </div>
+                        <div class="col">
+                            <h2 class="playoff4">Barca</h2>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="imag">
+                            <img src="picture/field.jpg" alt="поле не загрузилось" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+       
+        
         <div class="field">
             <div class="card-deck">
                 <div class="card AtleticoMadrid" onclick="groupgeneration('AtleticoMadrid')">

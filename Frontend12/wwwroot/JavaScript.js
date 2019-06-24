@@ -145,6 +145,7 @@ function deterselect(team1, team2, container1, container2) {
 //Функция запуска игр плей-офф
 function playoff()
 {
+  
     document.getElementsByClassName('field')[0].innerHTML = "";
     playoffcomand[0] = document.getElementsByClassName('comand' + 1)[0].innerText;
     playoffcomand[1] = document.getElementsByClassName('comand' + 4)[0].innerText;
@@ -210,8 +211,7 @@ function final()
     {
         playoffcomand[2] = playoffcomand[3];
     }
-    con3.innerText = "";
-    con4.innerText = "";
+    document.getElementsByClassName('fieldcom2')[0].innerHTML = "";
     con1.innerText = playoffcomand[0];
     con2.innerText = playoffcomand[2];
     con1.parentElement.classList.remove("text-success");
@@ -250,3 +250,7 @@ function end()
     }
     deterselect(playoffcomand[0], playoffcomand[2], con1, con2);
 }
+
+
+   
+  
